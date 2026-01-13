@@ -8,6 +8,7 @@
     <th>Name</th>
     <th>Date</th>
     <th>Time</th>
+    <th>Message</th>
     <th>Actions</th>
   </tr>
 
@@ -16,8 +17,9 @@
     <td>{{ event.name }}</td>
     <td>{{ event.date }}</td>
     <td>{{ event.time }}</td>
+    <td>{{ event.description }}</td>
     <td>
-      <a href="{% url 'event_update' event.id %}">Edit</a>
+      <a href="{% url 'updating' event.id %}">Edit</a>
       <a href="{% url 'event_delete' event.id %}">Delete</a>
     </td>
   </tr>
