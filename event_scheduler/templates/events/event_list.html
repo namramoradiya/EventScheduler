@@ -1,0 +1,28 @@
+<h2>My Events</h2>
+
+<a href="{% url 'event_create' %}">Create New Event</a>
+<br><br>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Actions</th>
+  </tr>
+
+  {% for event in events %}
+  <tr>
+    <td>{{ event.name }}</td>
+    <td>{{ event.date }}</td>
+    <td>{{ event.time }}</td>
+    <td>
+      <a href="{% url 'event_update' event.id %}">Edit</a>
+      <a href="{% url 'event_delete' event.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br>
+<a href="{% url 'logout' %}">Logout</a>
