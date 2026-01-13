@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event
-from .forms import EventForm
+from .forms import EventForm,RegisterUser
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
 
@@ -50,3 +51,16 @@ def event_delete(request, id):
         return redirect('event_list')
 
     return render(request, 'events/event_confirm_delete.html', {'event': event})
+
+
+def register(request):
+    if request.method=='POST':
+        form=RegisterUser(request.POST)
+        if form.is_valid():
+            user=form.save()
+            login(request,user)
+            return redirect('event_list')
+    else:
+        form=RegisterUser()
+
+    return render(request,'registration/register.html',{'form':form})
